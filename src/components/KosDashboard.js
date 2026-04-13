@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import roomImage from '../assets/room.jpg'
 import roomBathroomImage from '../assets/roombathroom.jpg'
 
@@ -20,9 +20,30 @@ export default {
       checkOut: ''
     })
 
+    // Detect if device is mobile
+    const isMobile = computed(() => {
+      if (typeof window !== 'undefined') {
+        return window.innerWidth <= 768
+      }
+      return false
+    })
+
     const submitBooking = () => {
+      if (!bookingForm.value.name || !bookingForm.value.phone || !bookingForm.value.roomId || !bookingForm.value.checkIn) {
+        alert('Mohon isi semua data terlebih dahulu')
+        return
+      }
       console.log('Booking submitted:', bookingForm.value)
-      alert('Terima kasih telah memesan!')
+      alert('Terima kasih telah memesan! Kami akan menghubungi Anda segera.')
+      // Reset form
+      bookingForm.value = {
+        name: '',
+        phone: '',
+        roomId: '',
+        checkIn: '',
+        checkOut: ''
+      }
+      selectedRoom.value = null
     }
 
     return {
@@ -30,7 +51,8 @@ export default {
       showPopup,
       rooms,
       bookingForm,
-      submitBooking
+      submitBooking,
+      isMobile
     }
   }
 }

@@ -16,7 +16,7 @@ export default KosDashboard
       <p>Jl. Pemasyarakatan no.1 Pekanbaru, Riau</p>
     </section>
 
-    <!-- Rooms -->
+    <!-- Rooms & Booking -->
     <section class="rooms">
       <h2>Pilihan Kamar</h2>
       <div class="rooms-list">
@@ -39,28 +39,28 @@ export default KosDashboard
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Booking Form -->
-    <section class="booking-form">
-      <h2>Pesan Sekarang</h2>
-      <div class="form-group">
-        <input v-model="bookingForm.name" type="text" placeholder="Nama Lengkap" />
+      <!-- Booking Form -->
+      <div class="booking-form">
+        <h2>Pesan Sekarang</h2>
+        <div class="form-group">
+          <input v-model="bookingForm.name" type="text" placeholder="Nama Lengkap" />
+        </div>
+        <div class="form-group">
+          <input v-model="bookingForm.phone" type="tel" placeholder="Nomor Telepon" />
+          <select v-model="bookingForm.roomId">
+            <option value="">-- Pilih Kamar --</option>
+            <option v-for="room in rooms" :key="room.id" :value="room.id">
+              {{ room.name }}
+            </option>
+          </select>
+        </div>
+        <h3>Waktu Booking</h3>
+        <div class="form-group">
+          <input v-model="bookingForm.checkIn" type="date" />
+        </div>
+        <button class="submit-btn" @click="submitBooking">Kirim Pemesanan</button>
       </div>
-      <div class="form-group">
-        <input v-model="bookingForm.phone" type="tel" placeholder="Nomor Telepon" />
-        <select v-model="bookingForm.roomId">
-          <option value="">-- Pilih Kamar --</option>
-          <option v-for="room in rooms" :key="room.id" :value="room.id">
-            {{ room.name }}
-          </option>
-        </select>
-      </div>
-      <h3>Waktu Booking</h3>
-      <div class="form-group">
-        <input v-model="bookingForm.checkIn" type="date" />
-      </div>
-      <button class="submit-btn" @click="submitBooking">Kirim Pemesanan</button>
     </section>
 
     <!-- Image Popup -->
