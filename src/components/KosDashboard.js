@@ -33,6 +33,13 @@ export default {
         alert('Mohon isi semua data terlebih dahulu')
         return
       }
+
+      // Validate check-out date if provided
+      if (bookingForm.value.checkOut && bookingForm.value.checkIn > bookingForm.value.checkOut) {
+        alert('Tanggal checkout harus setelah tanggal check-in')
+        return
+      }
+
       console.log('Booking submitted:', bookingForm.value)
       alert('Terima kasih telah memesan! Kami akan menghubungi Anda segera.')
       // Reset form

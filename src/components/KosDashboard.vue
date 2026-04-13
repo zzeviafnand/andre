@@ -44,20 +44,26 @@ export default KosDashboard
       <div class="booking-form">
         <h2>Pesan Sekarang</h2>
         <div class="form-group">
-          <input v-model="bookingForm.name" type="text" placeholder="Nama Lengkap" />
+          <input v-model="bookingForm.name" type="text" placeholder="Nama Lengkap" required />
         </div>
         <div class="form-group">
-          <input v-model="bookingForm.phone" type="tel" placeholder="Nomor Telepon" />
-          <select v-model="bookingForm.roomId">
+          <input v-model="bookingForm.phone" type="tel" placeholder="Nomor Telepon" pattern="[0-9+\-\s]+" required />
+          <select v-model="bookingForm.roomId" required>
             <option value="">-- Pilih Kamar --</option>
             <option v-for="room in rooms" :key="room.id" :value="room.id">
               {{ room.name }}
             </option>
           </select>
         </div>
-        <h3>Waktu Booking</h3>
         <div class="form-group">
-          <input v-model="bookingForm.checkIn" type="date" />
+          <div class="date-input-wrapper">
+            <label for="checkIn">Check-in</label>
+            <input id="checkIn" v-model="bookingForm.checkIn" type="date" required />
+          </div>
+          <!-- <div class="date-input-wrapper">
+            <label for="checkOut">Check-out</label>
+            <input id="checkOut" v-model="bookingForm.checkOut" type="date" />
+          </div> -->
         </div>
         <button class="submit-btn" @click="submitBooking">Kirim Pemesanan</button>
       </div>
